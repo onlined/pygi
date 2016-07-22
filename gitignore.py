@@ -15,7 +15,10 @@ group.add_argument('gitignores', help='gitignores to be included', nargs='*', de
 
 args = parser.parse_args()
 
+def get_text_from_url(url):
+    return urlopen(url).read().decode('UTF-8')
+
 if args.list:
-    print(urlopen('https://www.gitignore.io/api/list?format=lines').read().decode('UTF-8'), end='')
+    print(get_text_from_url('https://www.gitignore.io/api/list?format=lines'), end='')
 else:
-    print('\n'.join(urlopen('https://www.gitignore.io/api/{}'.format(','.join(args.gitignores))).read().decode('UTF-8').split('\n')[2:]), end='')
+    print('\n'.join(get_text_from_url('https://www.gitignore.io/api/{}'.format(','.join(args.gitignores))).split('\n')[2:]), end='')
