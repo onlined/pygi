@@ -1,1 +1,1 @@
-# gitignore-cli
+# pygitignore
