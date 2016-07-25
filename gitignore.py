@@ -6,6 +6,8 @@ import os
 import sys
 import json
 
+import Levenshtein
+
 try:
     from urllib.request import urlopen
 except:
@@ -14,12 +16,15 @@ except:
 CONFIG_PATH = '~/.config/pygitignore'.replace('~', os.environ['HOME'])
 API_URL = 'https://www.gitignore.io/api'
 
+
 def _get_text_from_url(url):
     return urlopen(url).read().decode('UTF-8')
+
 
 def list():
     text = _get_text_from_url('{}/list?format=lines'.format(API_URL))
     return text.split('\n')[:-1]
+
 
 def gitignores(*args):
     to_send = []
@@ -28,7 +33,19 @@ def gitignores(*args):
         if arg in gitignore_list:
             to_send.append(arg)
         elif __name__ == '__main__':
-            print('WARNING: {} is not in gitignore list.'.format(arg), file=sys.stderr)
+            possibles = []
+            for gitignore in gitignore_list:
+                if Levenshtein.distance(gitignore, arg) == 1:
+                    possibles.append(gitignore)
+            print('WARNING: {} is not in gitignore list.'.format(arg), file=sys.stderr, end='')
+            if possibles:
+                if len(possibles) == 1:
+                    possible_string = possibles[0]
+                else:
+                    possible_string = ', '.join(possibles[:-1]) + ' or ' + possibles[-1]
+                print(' Did you mean {}?'.format(possible_string), file=sys.stderr)
+            else:
+                print('', file=sys.stderr)
     if not to_send:
         return '\n'
     text = _get_text_from_url('{}/{}'.format(API_URL, ','.join(to_send)))
