@@ -7,6 +7,7 @@ import sys
 import json
 
 import Levenshtein
+from more_itertools import unique_everseen
 
 try:
     from urllib.request import urlopen
@@ -29,6 +30,7 @@ def list():
 def gitignores(*args):
     to_send = []
     gitignore_list = list()
+    args = unique_everseen(args)
     for arg in args:
         if arg in gitignore_list:
             to_send.append(arg)
