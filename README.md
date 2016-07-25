@@ -2,12 +2,12 @@
 
 Command line interface using gitignore.io API
 
-Installation:
+## Installation:
 
 ```
 # pip install pygi
 ```
-Usage:
+## Usage:
 
 ```
 $ gi --list
@@ -76,3 +76,4 @@ _projects
 
 
 
+s
