@@ -22,6 +22,6 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     entry_points = {
-        'console_scripts': ['gi=gitignore:main'],
+        'console_scripts': ['gi=pygi:main'],
     }
 )
