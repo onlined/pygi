@@ -2,13 +2,13 @@ from setuptools import setup
 
 setup(
     name='pygi',
-    version='1.0.1',
+    version='1.0.2',
     description='Command line interface using gitignore.io API',
-    url='http://github.com/onlined/pygitignore',
+    url='http://github.com/onlined/pygi',
     author='Ekin Dursun',
     author_email='ekindursun@gmail.com',
     license='GPLv3',
-    py_modules=['gitignore'],
+    py_modules=['pygi'],
     install_requires=[
         'python-Levenshtein',
         'more-itertools',
