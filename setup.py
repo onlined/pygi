@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pygi',
-    version='1.0',
+    version='1.0.1',
     description='Command line interface using gitignore.io API',
     url='http://github.com/onlined/pygitignore',
     author='Ekin Dursun',
