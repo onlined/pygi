@@ -7,7 +7,6 @@ import sys
 import json
 
 import Levenshtein
-from more_itertools import unique_everseen
 
 try:
     from urllib.request import urlopen
@@ -21,17 +20,14 @@ API_URL = 'https://www.gitignore.io/api'
 def _get_text_from_url(url):
     return urlopen(url).read().decode('UTF-8')
 
-
 def list():
     text = _get_text_from_url('{}/list?format=lines'.format(API_URL))
     return text.split('\n')[:-1]
 
-
 def gitignores(*args):
     to_send = []
     gitignore_list = list()
-    args = unique_everseen(args)
-    for arg in args:
+    for arg in set(args):
         if arg in gitignore_list:
             to_send.append(arg)
         elif __name__ == '__main__':
