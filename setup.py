@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pygi',
-    version='1.0.2',
+    version='1.0.3',
     description='Command line interface using gitignore.io API',
     url='http://github.com/onlined/pygi',
     author='Ekin Dursun',
@@ -11,7 +11,6 @@ setup(
     py_modules=['pygi'],
     install_requires=[
         'python-Levenshtein',
-        'more-itertools',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
